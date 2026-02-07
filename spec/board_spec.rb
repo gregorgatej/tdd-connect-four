@@ -25,5 +25,15 @@ describe ConnectFour::Board do
       expect(board.valid_move?(0)).to be true
       expect(board.valid_move?(6)).to be true
     end
+
+    it "returns false for columns out of range" do
+      expect(board.valid_move?(-1)).to be false
+      expect(board.valid_move?(7)).to be false
+    end
+
+    it "returns false for full columns" do
+      6.times { board.state[0][5] = "🔴" }
+      expect(board.valid_move?(5)).to be false
+    end
   end
 end
