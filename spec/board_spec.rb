@@ -13,4 +13,12 @@ describe ConnectFour::Board do
       expect(board.state.flatten.all? { |cell| cell == " " }).to be true
     end
   end
+
+  describe "#to_s" do
+    it "returns a string representation of the board" do
+      board = ConnectFour::Board.new
+      expect(board.to_s).to include("|")
+      expect(board.to_s).to include("+")
+    end
+  end
 end
