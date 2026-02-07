@@ -13,5 +13,9 @@ module ConnectFour
       display = state.map { |row| "| #{row.join(" | ")} |" }.join("\n")
       display + "\n+---+---+---+---+---+---+---+"
     end
+
+    def valid_move?(col)
+      col >= 0 && col < COLS && state[0][col] == " "
+    end
   end
 end
