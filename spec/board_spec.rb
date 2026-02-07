@@ -40,18 +40,18 @@ describe ConnectFour::Board do
   describe "#make mark" do
     it "places mark in the lowest empty row of a column" do
       board.make_mark("🔴", 4)
-      expect(board[5][4]).to eq("🔴")
+      expect(board.state[5][4]).to eq("🔴")
     end
 
     it "stacks marks in the same column" do
       board.make_mark("🔴", 4)
       board.make_mark("🟡", 4)
-      expect(board[5][4]).to eq("🔴")
-      expect(board[4][4]).to eq("🔴")
+      expect(board.state[5][4]).to eq("🔴")
+      expect(board.state[4][4]).to eq("🟡")
     end
 
     it "raises error for invalid column" do
-      expect(board.make_mark("🔴", 7)).to raise_error(ArgumentError)
+      expect { board.make_mark("🔴", 7) }.to raise_error(ArgumentError)
     end
   end
 end

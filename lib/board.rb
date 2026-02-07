@@ -17,5 +17,18 @@ module ConnectFour
     def valid_move?(col)
       col >= 0 && col < COLS && state[0][col] == " "
     end
+
+    def make_mark(mark, col)
+      raise ArgumentError, "Invalid column" unless valid_move?(col)
+
+      row = find_lowest_empty_row(col)
+      state[row][col] = mark
+    end
+
+    private
+
+    def find_lowest_empty_row(col)
+      (ROWS - 1).downto(0).find { |row| state[row][col] == " " }
+    end
   end
 end
