@@ -21,8 +21,8 @@ describe ConnectFour::Game do
 
     describe "#make_player_cycler" do
       it "cycles between players starting with given player" do
-        starter = game.player_red
-        player_cycler = game.make_player_cycler(starter)
+        starting_player = game.player_red
+        player_cycler = game.make_player_cycler(starting_player)
         expect(player_cycler.next).to eq(game.player_red)
         expect(player_cycler.next).to eq(game.player_yellow)
         expect(player_cycler.next).to eq(game.player_red)

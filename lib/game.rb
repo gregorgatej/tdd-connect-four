@@ -11,5 +11,10 @@ module ConnectFour
     def pick_random_starter
       [player_red, player_yellow].sample
     end
+
+    def make_player_cycler(starting_player)
+      players = [player_red, player_yellow]
+      players.rotate(players.index(starting_player)).cycle
+    end
   end
 end
