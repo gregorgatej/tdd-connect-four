@@ -31,6 +31,8 @@ module ConnectFour
       end
     end
 
+    private
+
     def pick_random_starter
       [player_red, player_yellow].sample
     end
