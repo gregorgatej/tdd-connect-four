@@ -37,7 +37,7 @@ describe ConnectFour::Board do
     end
   end
 
-  describe "#make mark" do
+  describe "#make_mark" do
     it "places mark in the lowest empty row of a column" do
       board.make_mark("🔴", 4)
       expect(board.state[5][4]).to eq("🔴")
@@ -52,6 +52,18 @@ describe ConnectFour::Board do
 
     it "raises error for invalid column" do
       expect { board.make_mark("🔴", 7) }.to raise_error(ArgumentError)
+    end
+  end
+
+  describe "#winning_state?" do
+    it "detects four in a row horizontally" do
+      board.state[5] = ["🔴", "🔴", "🔴", "🔴", " ", " ", " "]
+      expect(board.winning_state?("🔴")).to be true
+    end
+
+    it "returns false when no win condition horizontally" do
+      board.state[5] = ["🔴", "🔴", "🔴", " ", " ", " ", " "]
+      expect(board.winning_state?("🔴")).to be false
     end
   end
 end
