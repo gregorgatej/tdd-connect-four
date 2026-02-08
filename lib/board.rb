@@ -25,10 +25,22 @@ module ConnectFour
       state[row][col] = mark
     end
 
+    def winning_state?(mark)
+      horizontal_winning_state?(mark)
+    end
+
     private
 
     def find_lowest_empty_row(col)
       (ROWS - 1).downto(0).find { |row| state[row][col] == " " }
+    end
+
+    def horizontal_winning_state?(mark)
+      state.any? { |row| four_in_a_row?(row, mark) }
+    end
+
+    def four_in_a_row?(sequence, mark)
+      sequence.each_cons(4).any? { |segment| segment.all?(mark) }
     end
   end
 end
