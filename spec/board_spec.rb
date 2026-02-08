@@ -70,5 +70,21 @@ describe ConnectFour::Board do
       4.times { |i| board.state[5-i][0] = "🔴" }
       expect(board.winning_state?("🔴")).to be true
     end
+
+    it "detects for in a row diagonally (bottom-left to top-right)" do
+      board.state[5][0] = "🔴"
+      board.state[4][1] = "🔴"
+      board.state[3][2] = "🔴"
+      board.state[2][3] = "🔴"
+      expect(board.winning_state?("🔴")).to be true
+    end
+
+    it "detects for in a row diagonally (bottom-right to top-left)" do
+      board.state[5][6] = "🔴"
+      board.state[4][5] = "🔴"
+      board.state[3][4] = "🔴"
+      board.state[2][3] = "🔴"
+      expect(board.winning_state?("🔴")).to be true
+    end
   end
 end
