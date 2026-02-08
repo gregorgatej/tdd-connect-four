@@ -7,5 +7,9 @@ module ConnectFour
       @player_yellow = Player.new("🟡")
       @board = Board.new
     end
+
+    def pick_random_starter
+      [player_red, player_yellow].sample
+    end
   end
 end
