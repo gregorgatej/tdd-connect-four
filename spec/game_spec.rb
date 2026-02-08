@@ -11,5 +11,12 @@ describe ConnectFour::Game do
     it "creates a board" do
       expect(game.board).to be_a(ConnectFour::Board)
     end
+
+    describe "#pick_random_starter" do
+      it "returns either player_red or player_yellow" do
+        starter = game.pick_random_starter
+        expect([game.player_red, game.player_yellow]).to include(starter)
+      end
+    end
   end
 end
