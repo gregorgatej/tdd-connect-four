@@ -1,4 +1,5 @@
 require_relative "lib/connect_four"
 
-board = ConnectFour::Board.new
-puts board
+game = ConnectFour::Game.new
+winner = game.play
+puts "\nCongratulations, #{winner} has won the game!"

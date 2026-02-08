@@ -24,7 +24,7 @@ module ConnectFour
         next unless board.valid_move?(col)
 
         winner = process_turn(current_player, col)
-        puts "\nNew state of the board:"
+        puts "\nNew state of the board:\n"
         puts board
 
         return winner if winner

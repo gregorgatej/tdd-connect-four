@@ -9,7 +9,7 @@ describe ConnectFour::Board do
     end
 
     it "fills the board with empty spaces" do
-      expect(board.state.flatten.all? { |cell| cell == " " }).to be true
+      expect(board.state.flatten.all? { |cell| cell == "  " }).to be true
     end
   end
 
@@ -57,12 +57,12 @@ describe ConnectFour::Board do
 
   describe "#winning_state?" do
     it "detects four in a row horizontally" do
-      board.state[5] = ["🔴", "🔴", "🔴", "🔴", " ", " ", " "]
+      board.state[5] = ["🔴", "🔴", "🔴", "🔴", "  ", "  ", "  "]
       expect(board.winning_state?("🔴")).to be true
     end
 
     it "returns false when no win condition horizontally" do
-      board.state[5] = ["🔴", "🔴", "🔴", " ", " ", " ", " "]
+      board.state[5] = ["🔴", "🔴", "🔴", "  ", "  ", "  ", "  "]
       expect(board.winning_state?("🔴")).to be false
     end
 

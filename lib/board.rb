@@ -6,16 +6,16 @@ module ConnectFour
     attr_accessor :state
 
     def initialize
-      @state = Array.new(ROWS) { Array.new(COLS, " ") }
+      @state = Array.new(ROWS) { Array.new(COLS, "  ") }
     end
 
     def to_s
       display = state.map { |row| "| #{row.join(" | ")} |" }.join("\n")
-      display + "\n+---+---+---+---+---+---+---+"
+      display + "\n+----+----+----+----+----+----+----+"
     end
 
     def valid_move?(col)
-      col >= 0 && col < COLS && state[0][col] == " "
+      col >= 0 && col < COLS && state[0][col] == "  "
     end
 
     def make_mark(mark, col)
@@ -32,7 +32,7 @@ module ConnectFour
     private
 
     def find_lowest_empty_row(col)
-      (ROWS - 1).downto(0).find { |row| state[row][col] == " " }
+      (ROWS - 1).downto(0).find { |row| state[row][col] == "  " }
     end
 
     def horizontal_winning_state?(mark)
