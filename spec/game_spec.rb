@@ -28,5 +28,14 @@ describe ConnectFour::Game do
         expect(player_cycler.next).to eq(game.player_red)
       end
     end
+
+    describe "#process_turn" do
+      it "makes mark when position is valid" do
+        player = game.player_red
+        col = 0
+        game.process_turn(player, col)
+        expect(game.board.state[5][0]).to eq("🔴")
+      end
+    end
   end
 end

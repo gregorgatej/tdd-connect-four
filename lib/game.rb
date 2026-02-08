@@ -16,5 +16,9 @@ module ConnectFour
       players = [player_red, player_yellow]
       players.rotate(players.index(starting_player)).cycle
     end
+
+    def process_turn(player, col)
+      board.make_mark(player.mark, col)
+    end
   end
 end
