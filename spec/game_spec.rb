@@ -36,6 +36,19 @@ describe ConnectFour::Game do
         game.process_turn(player, col)
         expect(game.board.state[5][0]).to eq("🔴")
       end
+
+      it "returns player when winning conditions are met" do
+        player = game.player_red
+        3.times { |i| game.board.state[5-i][0] = player.mark}
+        result = game.process_turn(player, 0)
+        expect(result).to eq(player)
+      end
+
+      it "returns nil if no win yet" do
+        player = game.player_red
+        result = game.process_turn(player, 0)
+        expect(result).to be nil
+      end
     end
   end
 end

@@ -19,6 +19,7 @@ module ConnectFour
 
     def process_turn(player, col)
       board.make_mark(player.mark, col)
+      board.winning_state?(player.mark) ? player : nil
     end
   end
 end
