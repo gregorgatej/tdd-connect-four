@@ -8,6 +8,29 @@ module ConnectFour
       @board = Board.new
     end
 
+    def play
+      starting_player = pick_random_starter
+      puts "#{starting_player} will start the game!"
+      puts "Each turn pick a column (0-6) to drop your piece:\n\n"
+      puts board
+
+      player_cycler = make_player_cycler(starting_player)
+
+      loop do
+        current_player = player_cycler.next
+        puts "\n#{current_player}, pick a column (0-6):"
+        col = gets.chomp.to_i
+
+        next unless board.valid_move?(col)
+
+        winner = process_turn(current_player, col)
+        puts "\nNew state of the board:"
+        puts board
+
+        return winner if winner
+      end
+    end
+
     def pick_random_starter
       [player_red, player_yellow].sample
     end

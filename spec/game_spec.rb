@@ -50,5 +50,20 @@ describe ConnectFour::Game do
         expect(result).to be nil
       end
     end
+
+    describe "#play" do
+      it "starts a game and returns a winner" do
+        player = game.player_red
+        allow(game).to receive(:gets).and_return("0\n", "1\n", "0\n")
+        allow(game).to receive(:puts)
+        allow(game).to receive(:pick_random_starter).and_return(player)
+
+        game.board.state[5][0] = player.mark
+        game.board.state[4][0] = player.mark
+
+        winner = game.play
+        expect(winner).to eq(player)
+      end
+    end
   end
 end
