@@ -26,7 +26,7 @@ module ConnectFour
     end
 
     def winning_state?(mark)
-      horizontal_winning_state?(mark) || vertical_winning_state?(mark)
+      horizontal_winning_state?(mark) || vertical_winning_state?(mark) || diagonal_winning_state?(mark)
     end
 
     private
@@ -41,6 +41,27 @@ module ConnectFour
 
     def vertical_winning_state?(mark)
       (0...COLS).any? { |col| four_in_a_row?(column(col), mark) }
+    end
+
+
+    def diagonal_winning_state?(mark)
+      check_diagonal_direction?(mark, 1, 1) || check_diagonal_direction?(mark, 1, -1)
+    end
+
+    def check_diagonal_direction?(mark, row_step, col_step)
+      (0...ROWS).any? do |start_row|
+        (0...COLS).any? do |start_col|
+          four_in_diagonal?(mark, start_row, start_col, row_step, col_step)
+        end
+      end
+    end
+
+    def four_in_diagonal?(mark, start_row, start_col, row_step, col_step)
+      (0..3).all? do |i|
+        row = start_row + i * row_step
+        col = start_col + i * col_step
+        row >= 0 && row < ROWS && col >= 0 && col < COLS && state[row][col] == mark
+      end
     end
 
     def column(col)
