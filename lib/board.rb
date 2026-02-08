@@ -26,7 +26,7 @@ module ConnectFour
     end
 
     def winning_state?(mark)
-      horizontal_winning_state?(mark)
+      horizontal_winning_state?(mark) || vertical_winning_state?(mark)
     end
 
     private
@@ -37,6 +37,14 @@ module ConnectFour
 
     def horizontal_winning_state?(mark)
       state.any? { |row| four_in_a_row?(row, mark) }
+    end
+
+    def vertical_winning_state?(mark)
+      (0...COLS).any? { |col| four_in_a_row?(column(col), mark) }
+    end
+
+    def column(col)
+      state.map { |row| row[col] }
     end
 
     def four_in_a_row?(sequence, mark)
