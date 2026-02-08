@@ -65,5 +65,10 @@ describe ConnectFour::Board do
       board.state[5] = ["🔴", "🔴", "🔴", " ", " ", " ", " "]
       expect(board.winning_state?("🔴")).to be false
     end
+
+    it "detects four in a row vertically" do
+      4.times { |i| board.state[5-i][0] = "🔴" }
+      expect(board.winning_state?("🔴")).to be true
+    end
   end
 end
