@@ -1,3 +1,3 @@
-require_relative "board"
-require_relative "player"
-require_relative "game"
+require_relative "connect_four/board"
+require_relative "connect_four/player"
+require_relative "connect_four/game"
